@@ -1,24 +1,23 @@
-#!#!/usr/bin/python3
-"""In a text file, there is a single character H. Your text editor can execute
-only two operations in this file: Copy All and Paste. Given a number n, write
-a method that calculates the fewest number of operations needed to result in
-exactly n H characters in the file.
-"""
+#!/usr/bin/python3
+"""Module for calculating minimum copy/paste operations to reach n H chars."""
 
 
 def minOperations(n):
-    if n < 2:
+    """Calculate fewest operations to get exactly n H characters.
+
+    Args:
+        n (int): target number of H characters.
+
+    Returns:
+        int: minimum number of operations, or 0 if impossible.
+    """
+    if n <= 1:
         return 0
-
-    current_num_of_h = 1
-    copied = 0
-    num_of_operations = 0
-
-    while current_num_of_h < n:
-        if n % current_num_of_h == 0:
-            copied = current_num_of_h
-            num_of_operations += 1
-
-        current_num_of_h += copied
-        num_of_operations += 1
-    return num_of_operations/usr/bin/python3
+    ops = 0
+    divisor = 2
+    while n > 1:
+        while n % divisor == 0:
+            ops += divisor
+            n //= divisor
+        divisor += 1
+    return ops
